@@ -43,9 +43,9 @@ class ProjectController extends Controller
         //dd($request->all());
 
         //validazione data
-        $val_data = $request -> validated();
+        $val_data = $request->validated();
         //dd($val_data);
-        
+
         //genrazione project slug
         $project_slug = Project::generateSlug($val_data['title']);
         //dd($project_slug);
@@ -58,7 +58,7 @@ class ProjectController extends Controller
         Project::create($val_data);
 
         //redirect alla pagina principale
-        return to_route('admin.projects.index')->with ('message', 'project added successfully');
+        return to_route('admin.projects.index')->with('message', 'project added successfully');
     }
 
     /**
@@ -69,7 +69,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**

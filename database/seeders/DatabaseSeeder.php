@@ -20,5 +20,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        
+        //metodo call per richiamare la classe e quindi il ProjectSeeder
+        $this->call([
+            ProjectSeeder::class
+        ]);
+
     }
 }

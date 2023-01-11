@@ -10,7 +10,7 @@
     table-borderless
     table-primary
     align-middle">
-    
+
         <thead class="table-light">
             <tr>
                 <th>ID</th>
@@ -30,9 +30,12 @@
                     <a class="btn btn-primary btn-sm" href="{{route('admin.projects.show', $project->slug)}}">
                         <i class="fas fa-eye  fa-sm fa-fw"></i>
                     </a>
-                    
-                    <i class="fas fa-pencil  fa-sm fa-fw"></i>
-                    <i class="fas fa-trash fa-sm fa-fw"></i>
+                    <a class="btn btn-primary btn-sm" href="{{route('admin.projects.edit', $project->slug)}}">
+                        <i class="fas fa-pencil  fa-sm fa-fw"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" href="#">
+                        <i class="fas fa-trash  fa-sm fa-fw"></i>
+                    </a>
                 </td>
 
             </tr>

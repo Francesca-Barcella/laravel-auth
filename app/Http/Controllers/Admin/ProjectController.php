@@ -39,8 +39,8 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        
-       
+
+
         //validazione data
         $val_data = $request->validated();
         //dd($val_data);
@@ -79,7 +79,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**

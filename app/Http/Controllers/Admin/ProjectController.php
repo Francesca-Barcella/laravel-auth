@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Auth\Events\Validated;
 
 class ProjectController extends Controller
 {
@@ -91,7 +92,18 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+
+        //validazione dei dati
+        $val_data = $request->validated();
+
+        //aggiornare lo slug (serve se cambiamo il titolo)
+        $project_slug = Project::generateSlug($val_data['title']);
+        $val_data['slug'] = $project_slug;
+        //aggiornare il progetto
+        $project->update($val_data);
+
+        //redirect
+        return to_route('admin.projects.index')->with('message', 'project added successfully');
     }
 
     /**

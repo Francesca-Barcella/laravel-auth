@@ -16,8 +16,10 @@
   </div>
   @endif
 
-  <form action="{{route('admin.projects.store')}}" method="post">
+  <form action="{{route('admin.projects.update', $project->slug)}}" method="post">
     @csrf
+   
+    @method('PUT')
     <!--CAMPO TITLE-->
     <div class="mb-3">
       <label for="title" class="form-label">Name</label>
@@ -45,7 +47,7 @@
     </div>
     @enderror
 
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Update</button>
 
   </form>
 </div>

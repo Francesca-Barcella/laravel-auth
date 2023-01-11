@@ -4,9 +4,10 @@
 
 <div class="container">
     <h1>Create New Project</h1>
-    <form action="{{route ('admin.projects.store')}">
+    <form action="{{route('admin.projects.store')}}" method="POST">
         @csrf
-        
+       
+
         <div class="mb-3">
           <label for="title" class="form-label">Name</label>
           <input type="text" name="title" id="title" class="form-control" placeholder="Add New Project" aria-describedby="titleHelpId">

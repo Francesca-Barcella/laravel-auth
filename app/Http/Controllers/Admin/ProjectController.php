@@ -7,7 +7,6 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 
-
 class ProjectController extends Controller
 {
     /**
@@ -41,8 +40,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         
-        //dd($request->all());
-
+       
         //validazione data
         $val_data = $request->validated();
         //dd($val_data);

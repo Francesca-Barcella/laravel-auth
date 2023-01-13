@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-  <h1>Create New Project</h1>
+  <h1>Edit Project</h1>
 
   <!-- inserisco messaggio per validazione fallita -->
   @if ($errors->any())
@@ -16,10 +16,29 @@
   </div>
   @endif
 
-  <form action="{{route('admin.projects.update', $project->slug)}}" method="post">
+  <form action="{{route('admin.projects.update', $project->slug)}}" method="post" enctype="multipart/form-data">
     @csrf
-   
     @method('PUT')
+
+    <!--CAMPO COVER_IMAGE-->
+    <div class="d-flex mb-3 gap-4">
+      <img src="{{asset('storage/' . $project->cover_image)}}" alt="" width="150">
+
+      <div>
+        <label for="cover_image" class="form-label @error('cover_image') is-invalid @enderror">Replace Cover Image</label>
+        <input type="file" name="cover_image" id="cover_image" class="form-control" placeholder="" aria-describedby="coverImagehelpId">
+        <small id="coverImagehelpId" class="text-muted">Add cover image</small>
+      </div>
+    </div>
+
+    <!-- messaggio di errore direttamente sotto al campo cover image -->
+    @error('cover_image')
+    <div class="alert alert-danger" role="alert">
+      {{$message}}
+    </div>
+    @enderror
+
+
     <!--CAMPO TITLE-->
     <div class="mb-3">
       <label for="title" class="form-label">Name</label>

@@ -46,15 +46,17 @@ class ProjectController extends Controller
         //validazione data
         $val_data = $request->validated();
         //dd($val_data);
-        
-        //salvo la cover image dentro val_data
-        //put('uploads') -> èercorso dove salvare le cover_image
-        $cover_image=Storage::put('uploads', $val_data['cover_image']);
-        //dd($cover_image);
 
-        //inserisco cover image dentro val_data
-        $val_data['cover_image']=$cover_image;
-        
+        //salvo la cover image dentro val_data
+        if ($request->hasFile('cover_image')) {
+
+            //put('uploads') -> èercorso dove salvare le cover_image
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+            //dd($cover_image);
+
+            //inserisco cover image dentro val_data
+            $val_data['cover_image'] = $cover_image;
+        }
         //genrazione project slug
         $project_slug = Project::generateSlug($val_data['title']);
         //dd($project_slug);
@@ -103,7 +105,19 @@ class ProjectController extends Controller
     {
 
         //validazione dei dati
+        //dd($request->all());
         $val_data = $request->validated();
+        //dd($val_data);
+
+        if ($request->hasFile('cover_image')) {
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+            $val_data['cover_image'] = $cover_image;
+        };
+
+        //dd($val_data);
 
         //aggiornare lo slug (serve se cambiamo il titolo)
         $project_slug = Project::generateSlug($val_data['title']);

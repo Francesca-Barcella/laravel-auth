@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -41,11 +42,19 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
 
-
+        //dd($request->all());
         //validazione data
         $val_data = $request->validated();
         //dd($val_data);
+        
+        //salvo la cover image dentro val_data
+        //put('uploads') -> èercorso dove salvare le cover_image
+        $cover_image=Storage::put('uploads', $val_data['cover_image']);
+        //dd($cover_image);
 
+        //inserisco cover image dentro val_data
+        $val_data['cover_image']=$cover_image;
+        
         //genrazione project slug
         $project_slug = Project::generateSlug($val_data['title']);
         //dd($project_slug);

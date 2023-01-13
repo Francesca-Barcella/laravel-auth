@@ -16,7 +16,7 @@
   </div>
   @endif
 
-  <form action="{{route('admin.projects.store')}}" method="post">
+  <form action="{{route('admin.projects.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <!--CAMPO TITLE-->
     <div class="mb-3">
@@ -31,6 +31,20 @@
       {{$message}}
     </div>
     @enderror
+    <!--CAMPO COVER_IMAGE-->
+    <div class="mb-3">
+      <label for="cover_image" class="form-label @error('cover_image') is-invalid @enderror">Cover Image</label>
+      <input type="file" name="cover_image" id="cover_image" class="form-control" placeholder="" aria-describedby="coverImagehelpId">
+      <small id="coverImagehelpId" class="text-muted">Add cover image</small>
+    </div>
+
+    <!-- messaggio di errore direttamente sotto al campo cover image -->
+    @error('cover_image')
+    <div class="alert alert-danger" role="alert">
+      {{$message}}
+    </div>
+    @enderror
+
 
     <!--CAMPO DESCRIPTION-->
     <div class="mb-3">

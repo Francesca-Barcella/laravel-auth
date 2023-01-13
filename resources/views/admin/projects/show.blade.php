@@ -2,11 +2,11 @@
 
 @section('content')
 
-<div class="container">
-  <h1>{{$project->tilte}}</h1>
-  <h5>{{$project->slug}}</h5>
+<img src="{{asset('storage/'. $project->cover_image)}}" alt="" class="img-fluid">
+  <h1>Title project: {{$project->tilte}}</h1>
+  <h5>Slug Title project: {{$project->slug}}</h5>
   <div class="content">
-    {{$project->description}}
+  Descritpion project:{{$project->description}}
   </div>
 </div>
 
